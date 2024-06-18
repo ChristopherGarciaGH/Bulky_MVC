@@ -1,0 +1,54 @@
+﻿@page
+@model BulkyWebRazor_Temp.Pages.Categorias.IndexModel
+
+<div class="container">
+        <div class="row pt-4 pb-1"
+            <div class="col-12">
+                <h2 class="text-primary">
+                    Lista de categorias
+                </h2>
+            </div>
+            <div class="col-12 text-end">
+                <a asp-page="/categorias/crear" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i> Crear nueva categoria
+                </a>
+            </div>
+        </div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+        <th>
+            Categorias
+        </th>
+        <th>
+            Display Order
+        </th>
+        <th>
+
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model.ListaCategorias.OrderBy(u => u.DisplayOrder))
+        {
+            <tr>
+                <td>@obj.Nombre</td>
+                <td>@obj.DisplayOrder</td>
+                <td>
+                    <div class="d-flex justify-content-end btn-group" role="group">
+                    <a asp-page="/categorias/editar" asp-route-id="@obj.Id" class="btn btn-primary mx-2 col-5">
+                                <i class="bi bi-pencil-square"></i> Edit
+                    </a>
+
+                     <a asp-page="/categorias/borrar" asp-route-id="@obj.Id" class="btn btn-danger mx-2 col-5">
+                                <i class="bi bi-trash"></i> Delete
+                    </a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+</div>
