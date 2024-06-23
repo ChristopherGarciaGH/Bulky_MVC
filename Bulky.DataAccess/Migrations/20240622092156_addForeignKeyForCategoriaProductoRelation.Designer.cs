@@ -3,6 +3,7 @@ using Bulky.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bulky.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240622092156_addForeignKeyForCategoriaProductoRelation")]
+    partial class addForeignKeyForCategoriaProductoRelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,10 +88,6 @@ namespace Bulky.DataAccess.Migrations
                     b.Property<int>("IdCategoria")
                         .HasColumnType("int");
 
-                    b.Property<string>("ImageURL")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<double>("ListaPrecios")
                         .HasColumnType("float");
 
@@ -119,7 +118,6 @@ namespace Bulky.DataAccess.Migrations
                             Descripcion = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
                             ISBN = "SWD9999001",
                             IdCategoria = 1,
-                            ImageURL = "",
                             ListaPrecios = 99.0,
                             Precio = 90.0,
                             Precio100 = 80.0,
@@ -133,7 +131,6 @@ namespace Bulky.DataAccess.Migrations
                             Descripcion = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
                             ISBN = "CAW777777701",
                             IdCategoria = 2,
-                            ImageURL = "",
                             ListaPrecios = 40.0,
                             Precio = 30.0,
                             Precio100 = 20.0,
@@ -147,7 +144,6 @@ namespace Bulky.DataAccess.Migrations
                             Descripcion = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
                             ISBN = "RITO5555501",
                             IdCategoria = 3,
-                            ImageURL = "",
                             ListaPrecios = 55.0,
                             Precio = 50.0,
                             Precio100 = 35.0,
@@ -161,7 +157,6 @@ namespace Bulky.DataAccess.Migrations
                             Descripcion = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
                             ISBN = "WS3333333301",
                             IdCategoria = 1,
-                            ImageURL = "",
                             ListaPrecios = 70.0,
                             Precio = 65.0,
                             Precio100 = 55.0,
@@ -175,7 +170,6 @@ namespace Bulky.DataAccess.Migrations
                             Descripcion = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
                             ISBN = "SOTJ1111111101",
                             IdCategoria = 2,
-                            ImageURL = "",
                             ListaPrecios = 30.0,
                             Precio = 27.0,
                             Precio100 = 20.0,
@@ -189,7 +183,6 @@ namespace Bulky.DataAccess.Migrations
                             Descripcion = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
                             ISBN = "FOT000000001",
                             IdCategoria = 3,
-                            ImageURL = "",
                             ListaPrecios = 25.0,
                             Precio = 23.0,
                             Precio100 = 20.0,

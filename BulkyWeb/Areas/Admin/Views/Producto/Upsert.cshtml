@@ -1,0 +1,134 @@
+﻿@model ProductoVM
+
+<div class="card shadow border-0 my-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">@(Model.Producto.Id != 0 ? "Editar" : "Crear") Producto</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        @*enctype="multipart/form-data" => Si no se añade una imagen, la carga de archivos no funcionara*@
+        <form method="post" class="row" enctype="multipart/form-data">
+            <input asp-for="Producto.Id" hidden />
+            <input asp-for="Producto.ImageURL" hidden />
+            <div class="row">
+                <div class="col-10">
+                    <div class="border p-3">
+                        @*<div asp-validation-summary="ModelOnly"></div>*@
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="Producto.Titulo" class="form-control border-0 shadow" />
+                            <label asp-for="Producto.Titulo" class="ms-2"></label>
+                            <span asp-validation-for="Producto.Titulo" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating py-2 col-12">
+                            <textarea asp-for="Producto.Descripcion" class="form-control border-0 shadow"></textarea>
+                            <label asp-for="Producto.Descripcion" class="ms-2"></label>
+                        </div>
+
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="Producto.ISBN" class="form-control border-0 shadow" />
+                            <label asp-for="Producto.ISBN" class="ms-2"></label>
+                            <span asp-validation-for="Producto.ISBN" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="Producto.Autor" class="form-control border-0 shadow" />
+                            <label asp-for="Producto.Autor" class="ms-2"></label>
+                            <span asp-validation-for="Producto.Autor" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="Producto.ListaPrecios" class="form-control border-0 shadow" />
+                            <label asp-for="Producto.ListaPrecios" class="ms-2"></label>
+                            <span asp-validation-for="Producto.ListaPrecios" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="Producto.Precio" class="form-control border-0 shadow" />
+                            <label asp-for="Producto.Precio" class="ms-2"></label>
+                            <span asp-validation-for="Producto.Precio" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="Producto.Precio50" class="form-control border-0 shadow" />
+                            <label asp-for="Producto.Precio50" class="ms-2"></label>
+                            <span asp-validation-for="Producto.Precio50" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="Producto.Precio100" class="form-control border-0 shadow" />
+                            <label asp-for="Producto.Precio100" class="ms-2"></label>
+                            <span asp-validation-for="Producto.Precio100" class="text-danger"></span>
+                        </div>
+
+                        @*Crear lista con ViewData
+                        asp-items="@(ViewData["ListaCategorias"] as IEnumerable<SelectListItem>)"
+                        Crear lista con ViewBag
+                        asp-items="ViewBag.ListaCategorias"
+                        *@
+                        <div class="form-floating py-2 col-12">
+                            <select asp-for="@Model.Producto.IdCategoria" asp-items="@Model.ListaCategorias" class="form-select border-0 shadow">
+                                <option disabled selected>--Seleccionar Categoria--</option>
+                            </select>
+                            <label asp-for="Producto.IdCategoria" class="ms-2"></label>
+                            <span asp-validation-for="Producto.IdCategoria" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating py-2 col-12">
+                            <input type="file" name="file" asp-for="Producto.ImageURL" class="form-control border-0 shadow" />
+                            <label asp-for="Producto.ImageURL" class="ms-2"></label>
+                        </div>
+
+                        <div class="row pt-2">
+                            <div class="col-6 col-md-3">
+                                @if (Model.Producto.Id != 0)
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">Editar</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">Crear</button>
+                                }
+                            </div>
+
+                            <div class="col-6 col-md-4">
+                                <a asp-controller="Producto" asp-action="Index" class="btn btn-outline-primary border form-control">
+                                    Volver a la Lista
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <img src="@Model.Producto.ImageURL" width="100%"
+                         style="border-radius:5px; border:1px solid #bbb9b9" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+            ],
+            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+        });
+    </script>
+    @{
+        //Validación del lado del cliente
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
